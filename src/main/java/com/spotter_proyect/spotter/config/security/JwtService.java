@@ -16,7 +16,7 @@ import java.util.Map;
 import java.util.function.Function;
 
 @Service
-public class JwtUtil {
+public class JwtService {
 
     // Lee la clave secreta desde application.properties
     @Value("${security.jwt.secret-key}")
@@ -64,8 +64,19 @@ public class JwtUtil {
     }
 
     public <T> T extractClaim(String token, Function<Claims, T> claimsResolver) {
+
+        // PASO 1: Obtener TODOS los datos del token ("Abrir la caja fuerte")
+        // Llamamos al método de abajo que verifica la firma y desencripta todo.
+        // 'claims' es ahora un objeto tipo Map gigante con toda la info (Subject, Exp, etc.)
         final Claims claims = extractAllClaims(token);
+
+        // PASO 2: Ejecutar la función específica ("Usar el brazo robótico")
+        // .apply(claims) significa: "Toma el objeto 'claims' completo y aplícale la
+        // instrucción que me pasaron en 'claimsResolver'".
+        // Si claimsResolver era 'Claims::getSubject', aquí se ejecuta claims.getSubject().
         return claimsResolver.apply(claims);
+
+
     }
 
     private Claims extractAllClaims(String token) {
