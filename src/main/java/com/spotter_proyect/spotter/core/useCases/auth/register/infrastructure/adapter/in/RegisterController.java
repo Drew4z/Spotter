@@ -1,0 +1,31 @@
+package com.spotter_proyect.spotter.core.useCases.auth.register.infrastructure.adapter.in;
+
+import com.spotter_proyect.spotter.core.shared.mapper.Mapper;
+import com.spotter_proyect.spotter.core.shared.model.User;
+import com.spotter_proyect.spotter.core.useCases.auth.register.application.port.in.RegisterUseCase;
+import com.spotter_proyect.spotter.core.useCases.auth.register.infrastructure.DTO.RegisterRequestDTO;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping("/auth")
+public class RegisterController {
+
+    private final RegisterUseCase registerUseCase;
+    private final Mapper mapper;
+
+    public RegisterController(RegisterUseCase registerUseCase, Mapper mapper) {
+        this.registerUseCase = registerUseCase;
+        this.mapper = mapper;
+    }
+
+    @PostMapping("/register")
+    public ResponseEntity<User> register(@RequestBody RegisterRequestDTO request){
+        return ResponseEntity.ok(registerUseCase.register(request));
+    }
+
+}
