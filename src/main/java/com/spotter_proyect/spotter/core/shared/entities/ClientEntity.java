@@ -1,5 +1,6 @@
 package com.spotter_proyect.spotter.core.shared.entities;
 
+import com.spotter_proyect.spotter.core.shared.enums.Goals;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -10,8 +11,7 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = true)
 public class ClientEntity extends UserEntity {
-
-    private String goals; // "Perder peso", "Ganar músculo"
-
-    // Aquí podrías mapear las solicitudes hechas, pero es opcional ponerlo bidireccional
+    @Enumerated(EnumType.STRING)
+    @Column(name="goals")
+    private Goals goals;
 }
