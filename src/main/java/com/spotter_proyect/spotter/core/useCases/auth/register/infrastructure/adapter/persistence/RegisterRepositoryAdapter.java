@@ -19,6 +19,6 @@ public class RegisterRepositoryAdapter implements RegisterRepositoryPort {
     @Override
     public User save(User userDomain){
         UserEntity userToSave = mapper.registerDomainToEntity(userDomain);
-        return mapper.registerEntityToDomain(userRepository.save(userToSave));
+        return mapper.authEntityToDomain(userRepository.save(userToSave));
     }
 }

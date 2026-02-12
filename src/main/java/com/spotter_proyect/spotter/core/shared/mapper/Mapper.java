@@ -7,7 +7,7 @@ import com.spotter_proyect.spotter.core.shared.entities.UserEntity;
 import com.spotter_proyect.spotter.core.shared.model.Client;
 import com.spotter_proyect.spotter.core.shared.model.Trainer;
 import com.spotter_proyect.spotter.core.shared.model.User;
-import com.spotter_proyect.spotter.core.useCases.auth.register.infrastructure.DTO.RegisterRequestDTO;
+import com.spotter_proyect.spotter.core.useCases.auth.register.infrastructure.DTO.RegisterRequest;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
@@ -15,7 +15,8 @@ import java.time.LocalDateTime;
 @Component
 public class Mapper {
 
-    public User registerReqToDomain(RegisterRequestDTO request){
+    //  MAPPER REGISTER METHODS
+    public User registerReqToDomain(RegisterRequest request) {
         // 1. Validamos el rol para saber qué constructor usar
         if ("TRAINER".equalsIgnoreCase(request.role())) {
 
@@ -50,7 +51,7 @@ public class Mapper {
         }
     }
 
-    public UserEntity registerDomainToEntity(User userDomain){
+    public UserEntity registerDomainToEntity(User userDomain) {
         if (userDomain instanceof Trainer t) {
             TrainerEntity entity = new TrainerEntity();
             // Mapeo manual de campos
@@ -65,7 +66,7 @@ public class Mapper {
             entity.setPhoneNumber(t.phoneNumber());
             return entity;
         }
-        if(userDomain instanceof Client c){
+        if (userDomain instanceof Client c) {
             ClientEntity entity = new ClientEntity();
             entity.setName(c.name());
             entity.setEmail(c.email());
@@ -81,33 +82,35 @@ public class Mapper {
         throw new IllegalArgumentException("Dominio desconocido: " + userDomain.getClass());
     }
 
-    public User registerEntityToDomain(UserEntity userEntity){
-       if(userEntity instanceof TrainerEntity t){
-           return new Trainer(
-                   t.getId(),
-                   t.getName(),
-                   t.getEmail(),
-                   t.getPassword(),
-                   t.getRole(),
-                   t.getIsPremium(),
-                   t.getCreatedAt(),
-                   t.getSpecialty(),
-                   t.getBiography(),
-                   t.getPhoneNumber(),
-                   t.getIsVerified()
-           );
-       }else if(userEntity instanceof ClientEntity c){
-           return new Client(
-                   c.getId(),
-                   c.getEmail(),
-                   c.getPassword(),
-                   c.getName(),
-                   c.getRole(),
-                   c.getIsPremium(),
-                   c.getCreatedAt(),
-                   c.getGoals()
-           );
-       }
+    public User authEntityToDomain(UserEntity userEntity) {
+        if (userEntity instanceof TrainerEntity t) {
+            return new Trainer(
+                    t.getId(),
+                    t.getName(),
+                    t.getEmail(),
+                    t.getPassword(),
+                    t.getRole(),
+                    t.getIsPremium(),
+                    t.getCreatedAt(),
+                    t.getSpecialty(),
+                    t.getBiography(),
+                    t.getPhoneNumber(),
+                    t.getIsVerified()
+            );
+        } else if (userEntity instanceof ClientEntity c) {
+            return new Client(
+                    c.getId(),
+                    c.getEmail(),
+                    c.getPassword(),
+                    c.getName(),
+                    c.getRole(),
+                    c.getIsPremium(),
+                    c.getCreatedAt(),
+                    c.getGoals()
+            );
+        }
         throw new IllegalArgumentException("Entidad desconocida: " + userEntity.getClass());
     }
+
+
 }

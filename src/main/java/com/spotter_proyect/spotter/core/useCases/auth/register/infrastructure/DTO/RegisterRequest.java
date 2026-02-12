@@ -1,6 +1,6 @@
 package com.spotter_proyect.spotter.core.useCases.auth.register.infrastructure.DTO;
 
-public record RegisterRequestDTO(
+public record RegisterRequest(
         String email,
         String password,
         String name,
