@@ -3,7 +3,7 @@ package com.spotter_proyect.spotter.core.useCases.auth.register.domain;
 import com.spotter_proyect.spotter.core.shared.mapper.Mapper;
 import com.spotter_proyect.spotter.core.shared.model.User;
 import com.spotter_proyect.spotter.core.useCases.auth.register.application.port.persistence.RegisterRepositoryPort;
-import com.spotter_proyect.spotter.core.useCases.auth.register.infrastructure.DTO.RegisterRequest;
+import com.spotter_proyect.spotter.core.useCases.auth.register.infrastructure.DTO.RegisterRequestDTO;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -19,9 +19,9 @@ public class RegisterService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    public User register(RegisterRequest request) {
+    public User register(RegisterRequestDTO request) {
         // 1. Encriptamos la contraseña antes de crear el dominio
-        RegisterRequest securedRequest = new RegisterRequest(
+        RegisterRequestDTO securedRequest = new RegisterRequestDTO(
                 request.email(),
                 passwordEncoder.encode(request.password()),
                 request.name(),

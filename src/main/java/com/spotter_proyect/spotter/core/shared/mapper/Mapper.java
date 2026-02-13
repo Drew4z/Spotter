@@ -7,7 +7,7 @@ import com.spotter_proyect.spotter.core.shared.entities.UserEntity;
 import com.spotter_proyect.spotter.core.shared.model.Client;
 import com.spotter_proyect.spotter.core.shared.model.Trainer;
 import com.spotter_proyect.spotter.core.shared.model.User;
-import com.spotter_proyect.spotter.core.useCases.auth.register.infrastructure.DTO.RegisterRequest;
+import com.spotter_proyect.spotter.core.useCases.auth.register.infrastructure.DTO.RegisterRequestDTO;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 public class Mapper {
 
     //  MAPPER REGISTER METHODS
-    public User registerReqToDomain(RegisterRequest request) {
+    public User registerReqToDomain(RegisterRequestDTO request) {
         // 1. Validamos el rol para saber qué constructor usar
         if ("TRAINER".equalsIgnoreCase(request.role())) {
 
