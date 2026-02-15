@@ -153,9 +153,8 @@ public class Mapper {
                 .collect(Collectors.toList());
     }
 
-    public VideoEntity modifyVideo(VideoRequest request) {
+    public VideoEntity modifyVideo(VideoRequest request, VideoEntity videoEntity) {
 
-        VideoEntity videoEntity = new VideoEntity();
             videoEntity.setTitle(request.title());
             videoEntity.setCategory(request.category());
             videoEntity.setVideoUrl(request.videoUrl());

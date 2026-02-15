@@ -33,7 +33,7 @@ public class ModifyVideoService {
         }
 
         // 3. Actualizar el video con datos nuevos
-        VideoEntity modifiedVideo = mapper.modifyVideo(request);
+        VideoEntity modifiedVideo = mapper.modifyVideo(request, video);
 
         return repoPort.modifyVideo(modifiedVideo);
     }
