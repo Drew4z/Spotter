@@ -1,6 +1,7 @@
 package com.spotter_proyect.spotter.core.shared.mapper;
 
 
+import com.spotter_proyect.spotter.core.shared.DTO.UserResponse;
 import com.spotter_proyect.spotter.core.shared.entities.ClientEntity;
 import com.spotter_proyect.spotter.core.shared.entities.TrainerEntity;
 import com.spotter_proyect.spotter.core.shared.entities.UserEntity;
@@ -160,5 +161,23 @@ public class Mapper {
             videoEntity.setVideoUrl(request.videoUrl());
 
         return videoEntity;
+    }
+
+    // MAPPER ADMIN METHODS
+
+    public List<UserResponse> listUserEntityToResponse(List<UserEntity> users) {
+        return users.stream()
+                .map(this::UserEntityToResponse)
+                .collect(Collectors.toList());
+    }
+
+    public UserResponse UserEntityToResponse(UserEntity user){
+        return new UserResponse(
+                user.getId(),
+                user.getName(),
+                user.getEmail(),
+                user.getRole(),
+                user.getCreatedAt()
+        );
     }
 }
