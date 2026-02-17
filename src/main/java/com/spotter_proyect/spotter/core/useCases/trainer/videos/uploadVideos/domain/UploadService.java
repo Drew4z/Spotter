@@ -4,18 +4,14 @@ package com.spotter_proyect.spotter.core.useCases.trainer.videos.uploadVideos.do
 import com.spotter_proyect.spotter.core.shared.entities.UserEntity;
 import com.spotter_proyect.spotter.core.shared.entities.VideoEntity;
 import com.spotter_proyect.spotter.core.shared.mapper.Mapper;
-import com.spotter_proyect.spotter.core.shared.model.User;
 import com.spotter_proyect.spotter.core.shared.repositories.UserRepository;
-import com.spotter_proyect.spotter.core.useCases.trainer.videos.sharedVideos.DTO.VideoRequest;
-import com.spotter_proyect.spotter.core.useCases.trainer.videos.sharedVideos.DTO.VideoResponse;
+import com.spotter_proyect.spotter.core.shared.DTO.VideoRequest;
+import com.spotter_proyect.spotter.core.shared.DTO.VideoResponse;
 import com.spotter_proyect.spotter.core.useCases.trainer.videos.uploadVideos.application.ports.persistence.UploadRepositoryPort;
-import com.spotter_proyect.spotter.core.useCases.trainer.videos.uploadVideos.infrastructure.adapter.persistence.UploadRepositoryAdapter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor

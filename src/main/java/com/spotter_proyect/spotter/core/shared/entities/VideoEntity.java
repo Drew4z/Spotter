@@ -1,6 +1,6 @@
 package com.spotter_proyect.spotter.core.shared.entities;
 
-import com.spotter_proyect.spotter.core.useCases.trainer.videos.sharedVideos.enums.VideoCategory;
+import com.spotter_proyect.spotter.core.shared.enums.VideoCategory;
 import jakarta.persistence.*;
 import lombok.Data;
 import java.time.LocalDateTime;

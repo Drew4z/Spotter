@@ -9,8 +9,8 @@ import com.spotter_proyect.spotter.core.shared.model.Client;
 import com.spotter_proyect.spotter.core.shared.model.Trainer;
 import com.spotter_proyect.spotter.core.shared.model.User;
 import com.spotter_proyect.spotter.core.useCases.auth.register.infrastructure.DTO.RegisterRequestDTO;
-import com.spotter_proyect.spotter.core.useCases.trainer.videos.sharedVideos.DTO.VideoRequest;
-import com.spotter_proyect.spotter.core.useCases.trainer.videos.sharedVideos.DTO.VideoResponse;
+import com.spotter_proyect.spotter.core.shared.DTO.VideoRequest;
+import com.spotter_proyect.spotter.core.shared.DTO.VideoResponse;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;

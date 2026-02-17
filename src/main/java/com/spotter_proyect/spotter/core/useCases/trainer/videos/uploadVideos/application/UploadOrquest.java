@@ -1,7 +1,7 @@
 package com.spotter_proyect.spotter.core.useCases.trainer.videos.uploadVideos.application;
 
-import com.spotter_proyect.spotter.core.useCases.trainer.videos.sharedVideos.DTO.VideoRequest;
-import com.spotter_proyect.spotter.core.useCases.trainer.videos.sharedVideos.DTO.VideoResponse;
+import com.spotter_proyect.spotter.core.shared.DTO.VideoRequest;
+import com.spotter_proyect.spotter.core.shared.DTO.VideoResponse;
 import com.spotter_proyect.spotter.core.useCases.trainer.videos.uploadVideos.application.ports.in.UploadUseCase;
 import com.spotter_proyect.spotter.core.useCases.trainer.videos.uploadVideos.domain.UploadService;
 import lombok.RequiredArgsConstructor;

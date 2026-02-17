@@ -4,11 +4,9 @@ import com.spotter_proyect.spotter.core.shared.entities.VideoEntity;
 import com.spotter_proyect.spotter.core.shared.mapper.Mapper;
 import com.spotter_proyect.spotter.core.shared.repositories.VideoRepository;
 import com.spotter_proyect.spotter.core.useCases.trainer.videos.modifyVideos.application.port.persistence.ModifyVideoRepositoryPort;
-import com.spotter_proyect.spotter.core.useCases.trainer.videos.sharedVideos.DTO.VideoResponse;
+import com.spotter_proyect.spotter.core.shared.DTO.VideoResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
-
-import java.util.List;
 
 @Component
 @RequiredArgsConstructor

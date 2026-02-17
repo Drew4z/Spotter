@@ -2,11 +2,8 @@ package com.spotter_proyect.spotter.core.useCases.trainer.videos.deleteVideos.ap
 
 import com.spotter_proyect.spotter.core.useCases.trainer.videos.deleteVideos.application.port.in.DeleteVideoUseCase;
 import com.spotter_proyect.spotter.core.useCases.trainer.videos.deleteVideos.domain.DeleteVideoService;
-import com.spotter_proyect.spotter.core.useCases.trainer.videos.sharedVideos.DTO.VideoResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
