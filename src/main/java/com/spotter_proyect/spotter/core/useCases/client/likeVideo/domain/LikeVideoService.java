@@ -12,11 +12,13 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import java.util.Objects;
+
 @Service
 @RequiredArgsConstructor
 public class LikeVideoService {
 
-    private final LikeVideoRepositoryPort repo;
+    private final LikeVideoRepositoryPort repoPort;
     private final VideoRepository videoRepository;
     private final UserRepository userRepository;
     private final LikeVideoRepository likeVideoRepository;
@@ -28,31 +30,18 @@ public class LikeVideoService {
                 .orElseThrow(()-> new RuntimeException("NO SE HA ENCONTRADO EL VIDEO"));
 
         // 2. Obtener al usuario que quiere dar like
-        String email = SecurityContextHolder.getContext().getAuthentication().getName();
+        String email = Objects.requireNonNull(SecurityContextHolder.getContext().getAuthentication()).getName();
         UserEntity user = userRepository.findByEmail(email)
                 .orElseThrow(()-> new RuntimeException("NO SE HA ENCONTRADO AL USUARIO"));
 
         var existingLike = likeVideoRepository.findByVideoIdAndUserId(id, user.getId());
 
         if (existingLike.isPresent()) {
-            
-
-
             // --- YA DIO LIKE: QUITARLO (DISLIKE) ---
-            likeVideoRepository.delete(existingLike.get());
-            video.setLikesCount(video.getLikesCount() - 1);
-            videoRepository.save(video);
-            return "Like eliminado 💔";
+            return repoPort.deleteLike(existingLike, video);
         } else {
             // --- NO DIO LIKE: CREARLO ---
-            LikeVideoEntity newLike = new LikeVideoEntity();
-            newLike.setVideo(video);
-            newLike.setUser(user);
-            rep.save(newLike);
-
-            video.setLikesCount(video.getLikesCount() + 1);
-            videoRepository.save(video);
-            return "Like añadido ❤️";
-
+            return repoPort.saveLike(video, user);
+        }
     }
 }

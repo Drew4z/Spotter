@@ -1,7 +1,7 @@
-package com.spotter_proyect.spotter.core.useCases.trainer.videos.getVideosById.domain;
+package com.spotter_proyect.spotter.core.useCases.trainer.videos.getVideosByTrainerId.domain;
 
 
-import com.spotter_proyect.spotter.core.useCases.trainer.videos.getVideosById.application.port.persistence.GetVideosRepositoryPort;
+import com.spotter_proyect.spotter.core.useCases.trainer.videos.getVideosByTrainerId.application.port.persistence.GetVideosRepositoryPort;
 import com.spotter_proyect.spotter.core.useCases.trainer.videos.sharedVideos.DTO.VideoResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

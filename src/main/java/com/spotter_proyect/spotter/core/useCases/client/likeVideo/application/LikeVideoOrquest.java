@@ -7,12 +7,12 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class LikeVideoOrquet implements LikeVideoUseCase {
+public class LikeVideoOrquest implements LikeVideoUseCase {
 
     private final LikeVideoService service;
 
     @Override
     public String likeVideo(Long id){
-        return service.deleteVideo(id);
+        return service.likeVideo(id);
     }
 }

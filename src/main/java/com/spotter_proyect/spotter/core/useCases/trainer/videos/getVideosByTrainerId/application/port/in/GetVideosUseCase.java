@@ -1,4 +1,4 @@
-package com.spotter_proyect.spotter.core.useCases.trainer.videos.getVideosById.application.port.in;
+package com.spotter_proyect.spotter.core.useCases.trainer.videos.getVideosByTrainerId.application.port.in;
 
 import com.spotter_proyect.spotter.core.useCases.trainer.videos.sharedVideos.DTO.VideoResponse;
 
