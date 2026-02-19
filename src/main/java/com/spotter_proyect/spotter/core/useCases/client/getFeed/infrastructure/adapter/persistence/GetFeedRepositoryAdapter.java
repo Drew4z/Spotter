@@ -1,10 +1,10 @@
-package com.spotter_proyect.spotter.core.useCases.client.getVideoFeed.infrastructure.adapter.persistence;
+package com.spotter_proyect.spotter.core.useCases.client.getFeed.infrastructure.adapter.persistence;
 
 import com.spotter_proyect.spotter.core.shared.DTO.VideoResponse;
 import com.spotter_proyect.spotter.core.shared.entities.VideoEntity;
 import com.spotter_proyect.spotter.core.shared.mapper.Mapper;
 import com.spotter_proyect.spotter.core.shared.repositories.VideoRepository;
-import com.spotter_proyect.spotter.core.useCases.client.getVideoFeed.application.port.persistence.GetFeedRepositoryPort;
+import com.spotter_proyect.spotter.core.useCases.client.getFeed.application.port.persistence.GetFeedRepositoryPort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

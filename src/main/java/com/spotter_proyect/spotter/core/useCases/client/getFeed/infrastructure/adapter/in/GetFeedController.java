@@ -1,6 +1,6 @@
-package com.spotter_proyect.spotter.core.useCases.client.getVideoFeed.infrastructure.adapter.in;
+package com.spotter_proyect.spotter.core.useCases.client.getFeed.infrastructure.adapter.in;
 
-import com.spotter_proyect.spotter.core.useCases.client.getVideoFeed.application.port.in.GetFeedUseCase;
+import com.spotter_proyect.spotter.core.useCases.client.getFeed.application.port.in.GetFeedUseCase;
 import com.spotter_proyect.spotter.core.shared.DTO.VideoResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
