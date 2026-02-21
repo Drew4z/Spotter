@@ -1,6 +1,8 @@
 package com.spotter_proyect.spotter.core.useCases.trainer.videos.modifyVideo.domain;
 
 
+import com.spotter_proyect.spotter.core.exceptions.errors.ResourceNotFoundException;
+import com.spotter_proyect.spotter.core.exceptions.errors.UnauthorizedActionException;
 import com.spotter_proyect.spotter.core.shared.entities.VideoEntity;
 import com.spotter_proyect.spotter.core.shared.mapper.Mapper;
 import com.spotter_proyect.spotter.core.shared.repositories.VideoRepository;
@@ -23,13 +25,13 @@ public class ModifyVideoService {
 
         // 1. Buscar el video por ID
         VideoEntity video = videoRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Video no encontrado")); // Idealmente usa una excepción personalizada
+                .orElseThrow(() -> new ResourceNotFoundException("No se ha encontrado el video")); // Idealmente usa una excepción personalizada
 
         // 2. SEGURIDAD: Verificar que el usuario actual es el dueño del video
         String email = SecurityContextHolder.getContext().getAuthentication().getName();
 
         if (!video.getTrainer().getEmail().equals(email)) {
-            throw new RuntimeException("No tienes permiso para editar este video ⛔");
+            throw new UnauthorizedActionException("No tienes permiso para editar este video");
         }
 
         // 3. Actualizar el video con datos nuevos

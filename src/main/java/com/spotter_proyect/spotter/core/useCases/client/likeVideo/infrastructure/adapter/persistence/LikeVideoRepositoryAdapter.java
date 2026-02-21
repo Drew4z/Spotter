@@ -26,7 +26,8 @@ public class LikeVideoRepositoryAdapter implements LikeVideoRepositoryPort {
         likeVideoRepository.delete(existingLike.get());
         video.setLikesCount(video.getLikesCount() - 1);
         videoRepository.save(video);
-        return "SE HA ELIMINADO EL LIKE CORRECTAMENTE";
+
+        return "Se ha eliminado correctamente el like";
     }
 
     @Override
@@ -40,6 +41,6 @@ public class LikeVideoRepositoryAdapter implements LikeVideoRepositoryPort {
         video.setLikesCount(video.getLikesCount() + 1);
         videoRepository.save(video);
 
-        return "SE HA AÑADIDO EL LIKE CORRECTAMENTE";
+        return "Se ha guardado correctamente el like";
     }
 }

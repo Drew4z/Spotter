@@ -3,6 +3,7 @@ package com.spotter_proyect.spotter.core.exceptions;
 import com.spotter_proyect.spotter.core.exceptions.DTO.ApiErrorResponse;
 import com.spotter_proyect.spotter.core.exceptions.errors.DuplicateActionException;
 import com.spotter_proyect.spotter.core.exceptions.errors.ResourceNotFoundException;
+import com.spotter_proyect.spotter.core.exceptions.errors.UnauthorizedActionException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -38,7 +39,14 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
     }
 
-    // CASO 4: El comodín final (Error 500)
+    // CASO 4: Error de autorización
+    @ExceptionHandler(UnauthorizedActionException.class)
+    public ResponseEntity<ApiErrorResponse> handleUnauthorizedAction(UnauthorizedActionException ex) {
+        ApiErrorResponse error = new ApiErrorResponse(ex.getMessage(), HttpStatus.FORBIDDEN.value());
+        return ResponseEntity.status(HttpStatus.FORBIDDEN).body(error);
+    }
+
+    // CASO FINAL: El comodín final (Error 500)
     // Atrapa cualquier otro error inesperado (bases de datos caídas, NullPointers...)
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ApiErrorResponse> handleGenericError(Exception ex) {

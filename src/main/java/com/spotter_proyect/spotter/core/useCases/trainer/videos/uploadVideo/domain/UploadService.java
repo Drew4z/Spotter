@@ -1,6 +1,7 @@
 package com.spotter_proyect.spotter.core.useCases.trainer.videos.uploadVideo.domain;
 
 
+import com.spotter_proyect.spotter.core.exceptions.errors.ResourceNotFoundException;
 import com.spotter_proyect.spotter.core.shared.entities.UserEntity;
 import com.spotter_proyect.spotter.core.shared.entities.VideoEntity;
 import com.spotter_proyect.spotter.core.shared.mapper.Mapper;
@@ -24,9 +25,11 @@ public class UploadService {
     public VideoResponse upload(VideoRequest request){
         // 1. Obtener el email del usuario logueado desde el Token JWT
         String email = SecurityContextHolder.getContext().getAuthentication().getName();
+
         // 2. Buscar al usuario en la BBDD
         UserEntity trainer = userRepository.findByEmail(email)
-                .orElseThrow(() -> new UsernameNotFoundException("Usuario no encontrado"));
+                .orElseThrow(() -> new ResourceNotFoundException("No se ha encontrado al usuario"));
+
         // 3. Crear la entidad Video
         VideoEntity videoToSave = mapper.uploadVideoRequestToEntity(request, trainer);
 

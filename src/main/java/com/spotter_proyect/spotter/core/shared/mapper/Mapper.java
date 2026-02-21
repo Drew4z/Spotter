@@ -193,10 +193,10 @@ public class Mapper {
 
     // MAPPER FOLLOW METHODS
 
-    public FollowEntity fill(Long clientId, Long trainerId) {
+    public FollowEntity fill(ClientEntity client, TrainerEntity trainer) {
         FollowEntity newFollow = new FollowEntity();
-            newFollow.setClientId(clientId);
-            newFollow.setTrainerId(trainerId);
+            newFollow.setClientId(client);
+            newFollow.setTrainerId(trainer);
         return newFollow;
     }
 }

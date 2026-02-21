@@ -1,6 +1,7 @@
 package com.spotter_proyect.spotter.core.useCases.client.likeVideo.domain;
 
 
+import com.spotter_proyect.spotter.core.exceptions.errors.ResourceNotFoundException;
 import com.spotter_proyect.spotter.core.shared.entities.LikeVideoEntity;
 import com.spotter_proyect.spotter.core.shared.entities.UserEntity;
 import com.spotter_proyect.spotter.core.shared.entities.VideoEntity;
@@ -27,12 +28,12 @@ public class LikeVideoService {
 
        // 1. Extraer el video que se quiere dar like
         VideoEntity video = videoRepository.findById(id)
-                .orElseThrow(()-> new RuntimeException("NO SE HA ENCONTRADO EL VIDEO"));
+                .orElseThrow(()-> new ResourceNotFoundException("No se ha encontrado el video"));
 
         // 2. Obtener al usuario que quiere dar like
         String email = Objects.requireNonNull(SecurityContextHolder.getContext().getAuthentication()).getName();
         UserEntity user = userRepository.findByEmail(email)
-                .orElseThrow(()-> new RuntimeException("NO SE HA ENCONTRADO AL USUARIO"));
+                .orElseThrow(()-> new ResourceNotFoundException("No se ha encontrado el usuario"));
 
         var existingLike = likeVideoRepository.findByVideoIdAndUserId(id, user.getId());
 

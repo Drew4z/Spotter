@@ -4,6 +4,7 @@ import com.spotter_proyect.spotter.core.shared.mapper.Mapper;
 import com.spotter_proyect.spotter.core.shared.model.User;
 import com.spotter_proyect.spotter.core.useCases.auth.register.application.port.in.RegisterUseCase;
 import com.spotter_proyect.spotter.core.useCases.auth.register.infrastructure.DTO.RegisterRequestDTO;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -23,7 +24,7 @@ public class RegisterController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<User> register(@RequestBody RegisterRequestDTO request){
+    public ResponseEntity<User> register(@Valid @RequestBody RegisterRequestDTO request){
         return ResponseEntity.ok(registerUseCase.register(request));
     }
 

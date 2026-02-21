@@ -1,6 +1,8 @@
 package com.spotter_proyect.spotter.core.useCases.client.followTrainer.infrastructure.adapter.persistence;
 
+import com.spotter_proyect.spotter.core.shared.entities.ClientEntity;
 import com.spotter_proyect.spotter.core.shared.entities.FollowEntity;
+import com.spotter_proyect.spotter.core.shared.entities.TrainerEntity;
 import com.spotter_proyect.spotter.core.shared.mapper.Mapper;
 import com.spotter_proyect.spotter.core.shared.repositories.FollowRepository;
 import com.spotter_proyect.spotter.core.useCases.client.followTrainer.application.ports.persistence.FollowRepositoryPort;
@@ -15,9 +17,9 @@ public class FollowRepositoryAdapter implements FollowRepositoryPort {
     private final Mapper mapper;
 
     @Override
-    public String followTrainer(Long clientId, Long trainerId){
+    public String followTrainer(ClientEntity client, TrainerEntity trainer){
 
-        FollowEntity newFollow = mapper.fill(clientId, trainerId);
+        FollowEntity newFollow = mapper.fill(client, trainer);
         FollowEntity savedFollow = repository.save(newFollow);
 
         return "Se ha guardado correctamente tu like";
