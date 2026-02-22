@@ -20,6 +20,6 @@ public class UploadRepositoryAdapter implements UploadRepositoryPort {
 
         VideoEntity savedVideo = repository.save(entity);
 
-        return mapper.uploadVideoEntityToResponse(savedVideo);
+        return mapper.videoEntityToResponse(savedVideo);
     }
 }

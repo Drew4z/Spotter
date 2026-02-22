@@ -30,7 +30,7 @@ public class ModifyVideoService {
         // 2. SEGURIDAD: Verificar que el usuario actual es el dueño del video
         String email = SecurityContextHolder.getContext().getAuthentication().getName();
 
-        if (!video.getTrainer().getEmail().equals(email)) {
+        if (!video.getTrainerEntity().getEmail().equals(email)) {
             throw new UnauthorizedActionException("No tienes permiso para editar este video");
         }
 

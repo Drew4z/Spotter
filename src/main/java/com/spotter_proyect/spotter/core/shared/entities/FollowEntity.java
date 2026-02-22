@@ -1,7 +1,5 @@
 package com.spotter_proyect.spotter.core.shared.entities;
 
-import com.spotter_proyect.spotter.core.shared.model.Client;
-import com.spotter_proyect.spotter.core.shared.model.Trainer;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -20,12 +18,12 @@ public class FollowEntity {
     // Quién sigue (El Cliente)
     @ManyToOne
     @JoinColumn(name = "client_id", nullable = false)
-    private ClientEntity clientId;
+    private ClientEntity clientEntity;
 
     // A quién siguen (El Entrenador)
     @ManyToOne
     @JoinColumn(name = "trainer_id", nullable = false)
-    private TrainerEntity trainerId;
+    private TrainerEntity trainerEntity;
 
     private LocalDateTime createdAt = LocalDateTime.now();
 

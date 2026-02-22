@@ -26,7 +26,7 @@ public class VideoEntity {
     // Relación: Muchos videos pertenecen a UN entrenador
     @ManyToOne
     @JoinColumn(name = "trainer_id", nullable = false)
-    private UserEntity trainer;
+    private UserEntity trainerEntity;
 
     @Column(name="likesCount")
     private Integer likesCount = 0; // Contador caché

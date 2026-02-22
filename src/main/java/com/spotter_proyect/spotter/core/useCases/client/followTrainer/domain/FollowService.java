@@ -4,7 +4,6 @@ import com.spotter_proyect.spotter.core.exceptions.errors.DuplicateActionExcepti
 import com.spotter_proyect.spotter.core.exceptions.errors.ResourceNotFoundException;
 import com.spotter_proyect.spotter.core.shared.entities.ClientEntity;
 import com.spotter_proyect.spotter.core.shared.entities.TrainerEntity;
-import com.spotter_proyect.spotter.core.shared.entities.UserEntity;
 import com.spotter_proyect.spotter.core.shared.repositories.ClientRepository;
 import com.spotter_proyect.spotter.core.shared.repositories.FollowRepository;
 import com.spotter_proyect.spotter.core.shared.repositories.TrainerRepository;
@@ -38,7 +37,7 @@ public class FollowService {
                 .orElseThrow(()-> new ResourceNotFoundException("No se ha encontrado al entrenador"));
 
         // 3. Le preguntas a la base de datos: "¿Este cliente YA sigue a este entrenador?"
-        boolean alreadyFollow = followRepository.existsByClientIdAndTrainerId(clientEntity, trainerEntity);
+        boolean alreadyFollow = followRepository.existsByClientEntityAndTrainerEntity(clientEntity, trainerEntity);
 
         // 4. Verificamos que no le siga
         if (alreadyFollow) {

@@ -7,11 +7,11 @@ import com.spotter_proyect.spotter.core.shared.enums.Roles;
 import com.spotter_proyect.spotter.core.shared.model.Client;
 import com.spotter_proyect.spotter.core.shared.model.Trainer;
 import com.spotter_proyect.spotter.core.shared.model.User;
-import com.spotter_proyect.spotter.core.useCases.auth.login.infrastructure.DTO.LoginRequest;
 import com.spotter_proyect.spotter.core.useCases.auth.login.infrastructure.DTO.LoginResponse;
 import com.spotter_proyect.spotter.core.useCases.auth.register.infrastructure.DTO.RegisterRequestDTO;
 import com.spotter_proyect.spotter.core.shared.DTO.VideoRequest;
 import com.spotter_proyect.spotter.core.shared.DTO.VideoResponse;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
@@ -141,19 +141,19 @@ public class Mapper {
         video.setCategory(request.category());
         video.setCreatedAt(LocalDateTime.now());
         video.setLikesCount(0);
-        video.setTrainer(trainer); // A
+        video.setTrainerEntity(trainer); // A
 
         return video;
     }
 
-    public VideoResponse uploadVideoEntityToResponse(VideoEntity video){
+    public VideoResponse videoEntityToResponse(VideoEntity video){
 
         return new VideoResponse(
                 video.getId(),
                 video.getTitle(),
                 video.getVideoUrl(),
                 video.getCategory(),
-                video.getTrainer().getName(), // Nombre del entrenador
+                video.getTrainerEntity().getName(), // Nombre del entrenador
                 video.getLikesCount(),
                 video.getCreatedAt()
         );
@@ -161,7 +161,7 @@ public class Mapper {
 
     public List<VideoResponse> listVideosEntityToReponse(List<VideoEntity> videos) {
         return videos.stream()
-                .map(this::uploadVideoEntityToResponse)
+                .map(this::videoEntityToResponse)
                 .collect(Collectors.toList());
     }
 
@@ -172,6 +172,10 @@ public class Mapper {
             videoEntity.setVideoUrl(request.videoUrl());
 
         return videoEntity;
+    }
+
+    public Page<VideoResponse> pageEntityToResponse(Page<VideoEntity> entityPage) {
+        return entityPage.map(this::videoEntityToResponse);
     }
 
     // MAPPER ADMIN METHODS
@@ -196,8 +200,10 @@ public class Mapper {
 
     public FollowEntity fill(ClientEntity client, TrainerEntity trainer) {
         FollowEntity newFollow = new FollowEntity();
-            newFollow.setClientId(client);
-            newFollow.setTrainerId(trainer);
+            newFollow.setClientEntity(client);
+            newFollow.setTrainerEntity(trainer);
         return newFollow;
     }
+
+
 }

@@ -4,6 +4,7 @@ package com.spotter_proyect.spotter.config;
 import com.spotter_proyect.spotter.core.exceptions.errors.DuplicateActionException;
 import com.spotter_proyect.spotter.core.exceptions.errors.ResourceNotFoundException;
 import com.spotter_proyect.spotter.core.shared.entities.UserEntity;
+import com.spotter_proyect.spotter.core.shared.enums.Roles;
 import com.spotter_proyect.spotter.core.shared.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
@@ -28,7 +29,7 @@ public class DataSeeder implements CommandLineRunner {
             admin.setName("Super Admin");
             admin.setEmail("admin@spotter.com");
             admin.setPassword(passwordEncoder.encode("admin123")); // Contraseña segura
-            admin.setRole("ADMIN"); // <--- EL ROL MÁGICO
+            admin.setRole(Roles.ADMIN); // <--- EL ROL MÁGICO
             admin.setCreatedAt(LocalDateTime.now());
             admin.setIsPremium(true);
 

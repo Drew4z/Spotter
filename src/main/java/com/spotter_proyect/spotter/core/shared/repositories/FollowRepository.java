@@ -10,11 +10,11 @@ import java.util.Optional;
 public interface FollowRepository extends JpaRepository<FollowEntity, Long> {
 
     // 1. Para contar cuántos seguidores tiene un entrenador (devuelve un número)
-    Long countByTrainerId(Long trainerId);
+    Long countByTrainerEntity(TrainerEntity trainerEntity);
 
     // 2. Para comprobar si un cliente YA sigue a un entrenador (devuelve true o false)
-    boolean existsByClientIdAndTrainerId(ClientEntity client, TrainerEntity trainer);
+    boolean existsByClientEntityAndTrainerEntity(ClientEntity clientEntity, TrainerEntity trainerEntity);
 
     // 3. Para buscar el registro exacto (útil para cuando el cliente quiera "Dejar de seguir" y necesites borrarlo)
-    Optional<FollowEntity> findByClientIdAndTrainerId(Long clientId, Long trainerId);
+    Optional<FollowEntity> findByClientEntityAndTrainerEntity(ClientEntity clientEntity, TrainerEntity trainerEntity);
 }

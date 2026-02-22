@@ -22,6 +22,6 @@ public class FollowRepositoryAdapter implements FollowRepositoryPort {
         FollowEntity newFollow = mapper.fill(client, trainer);
         FollowEntity savedFollow = repository.save(newFollow);
 
-        return "Se ha guardado correctamente tu like";
+        return "Se ha guardado correctamente y has empezado a seguir";
     }
 }

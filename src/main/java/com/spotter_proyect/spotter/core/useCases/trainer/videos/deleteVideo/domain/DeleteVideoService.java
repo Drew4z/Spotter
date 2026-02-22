@@ -24,10 +24,9 @@ public class DeleteVideoService {
 
         // 2. SEGURIDAD: Verificar que el usuario actual es el dueño
         String currentEmail = SecurityContextHolder.getContext().getAuthentication().getName();
-        if (!video.getTrainer().getEmail().equals(currentEmail)) {
+        if (!video.getTrainerEntity().getEmail().equals(currentEmail)) {
             throw new UnauthorizedActionException("No tienes permiso para eliminar este video");
         }
-w
         return repo.deleteVideo(video);
     }
 }

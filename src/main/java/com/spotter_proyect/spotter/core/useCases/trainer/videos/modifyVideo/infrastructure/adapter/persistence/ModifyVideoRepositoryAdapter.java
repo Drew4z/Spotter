@@ -20,7 +20,7 @@ public class ModifyVideoRepositoryAdapter implements ModifyVideoRepositoryPort {
 
         VideoEntity savedVideo = repository.save(entity);
 
-        return mapper.uploadVideoEntityToResponse(entity);
+        return mapper.videoEntityToResponse(entity);
 
     }
 }

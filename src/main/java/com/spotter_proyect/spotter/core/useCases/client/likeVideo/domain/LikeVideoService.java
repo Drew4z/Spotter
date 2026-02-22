@@ -31,7 +31,7 @@ public class LikeVideoService {
                 .orElseThrow(()-> new ResourceNotFoundException("No se ha encontrado el video"));
 
         // 2. Obtener al usuario que quiere dar like
-        String email = Objects.requireNonNull(SecurityContextHolder.getContext().getAuthentication()).getName();
+        String email = SecurityContextHolder.getContext().getAuthentication().getName();
         UserEntity user = userRepository.findByEmail(email)
                 .orElseThrow(()-> new ResourceNotFoundException("No se ha encontrado el usuario"));
 

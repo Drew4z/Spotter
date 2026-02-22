@@ -26,6 +26,6 @@ public class TrainerEntity extends UserEntity {
     private Boolean isVerified = false;
 
     // Relación: Un entrenador tiene muchos videos
-    @OneToMany(mappedBy = "trainer", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "trainerEntity", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<VideoEntity> videos;
 }

@@ -20,7 +20,7 @@ public class GetVideosRepositoryAdapter implements GetVideosRepositoryPort {
     @Override
     public List<VideoResponse> getVideosById(Long id){
 
-        List<VideoEntity> videos = repository.findAllByTrainerIdOrderByCreatedAtDesc(id);
+        List<VideoEntity> videos = repository.findAllByTrainerEntityIdOrderByCreatedAtDesc(id);
 
         return mapper.listVideosEntityToReponse(videos);
 
