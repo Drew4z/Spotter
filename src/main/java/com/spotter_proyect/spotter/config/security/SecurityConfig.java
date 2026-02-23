@@ -26,6 +26,8 @@ public class SecurityConfig {
         http
             .csrf(csrf -> csrf.disable()) // Necesario para que funcionen los POST
             .authorizeHttpRequests(auth -> auth
+
+                    .requestMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html").permitAll()
                     // 1. Rutas PÚBLICAS (Login y Register) -> Permitir a todos
                     .requestMatchers("/auth/**").permitAll()
 
