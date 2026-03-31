@@ -17,7 +17,7 @@ public class GetFollowFeedController {
 
     private final GetFollowFeedUseCase useCase;
 
-    @GetMapping("/getFollowFeed")
+    @GetMapping("/getFollowingFeed")
     public ResponseEntity<Page<VideoResponse>> getFeed(@RequestParam(defaultValue = "0") int page,
                                                        @RequestParam(defaultValue = "5") int size) {
 

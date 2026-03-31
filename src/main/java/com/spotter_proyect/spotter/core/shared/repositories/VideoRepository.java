@@ -16,8 +16,10 @@ public interface VideoRepository extends JpaRepository<VideoEntity, Long> {
     List<VideoEntity> findAllByTrainerEntityIdOrderByCreatedAtDesc(Long trainerId);
 
     // Método para obtener el feed de forma aleatoria
-    @Query(value = "SELECT * FROM videos ORDER BY RANDOM()", nativeQuery = true)
-    List<VideoEntity> findAllRandom();
+    // Usamos SQL nativo de Postgres: ORDER BY RANDOM() y LIMIT
+    @Query(value = "SELECT * FROM videos ORDER BY RANDOM() LIMIT :limit", nativeQuery = true)
+    List<VideoEntity> findRandomVideos(@Param("limit") int limit);
+
 
     // Método para obtener el following feed
     @Query("SELECT v FROM VideoEntity v WHERE v.trainerEntity.id IN " +

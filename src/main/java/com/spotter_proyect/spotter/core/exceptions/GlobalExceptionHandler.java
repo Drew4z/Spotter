@@ -3,6 +3,7 @@ package com.spotter_proyect.spotter.core.exceptions;
 import com.spotter_proyect.spotter.core.exceptions.DTO.ApiErrorResponse;
 import com.spotter_proyect.spotter.core.exceptions.errors.DuplicateActionException;
 import com.spotter_proyect.spotter.core.exceptions.errors.ResourceNotFoundException;
+import com.spotter_proyect.spotter.core.exceptions.errors.UnauthenticatedException;
 import com.spotter_proyect.spotter.core.exceptions.errors.UnauthorizedActionException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -48,12 +49,19 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.FORBIDDEN).body(error);
     }
 
+    // CASO 5: Error de autorizacion nula
+    @ExceptionHandler(UnauthenticatedException.class)
+    public ResponseEntity<ApiErrorResponse> handleUnauthenticatedException(UnauthenticatedException ex) {
+        ApiErrorResponse error = new ApiErrorResponse(ex.getMessage(), HttpStatus.UNAUTHORIZED.value(), LocalDateTime.now());
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(error);
+    }
+
     // CASO FINAL: El comodín final (Error 500)
     // Atrapa cualquier otro error inesperado (bases de datos caídas, NullPointers...)
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ApiErrorResponse> handleGenericError(Exception ex) {
         // Aquí podrías imprimir ex.printStackTrace() en la consola para ti
-        ApiErrorResponse error = new ApiErrorResponse("Ha ocurrido un error interno en el servidor.", HttpStatus.INTERNAL_SERVER_ERROR.value(), LocalDateTime.now());
+        ApiErrorResponse error = new ApiErrorResponse(ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR.value(), LocalDateTime.now());
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(error);
     }
 }

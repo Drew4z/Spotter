@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class GetFollowFeedOrquest implements GetFollowFeedUseCase {
+public class GetFollowFeedOrchestrator implements GetFollowFeedUseCase {
 
     private final GetFollowFeedService service;
 

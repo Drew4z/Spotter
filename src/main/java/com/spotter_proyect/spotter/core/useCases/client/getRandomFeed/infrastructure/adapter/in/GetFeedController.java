@@ -1,11 +1,12 @@
-package com.spotter_proyect.spotter.core.useCases.client.getFeed.infrastructure.adapter.in;
+package com.spotter_proyect.spotter.core.useCases.client.getRandomFeed.infrastructure.adapter.in;
 
-import com.spotter_proyect.spotter.core.useCases.client.getFeed.application.port.in.GetFeedUseCase;
+import com.spotter_proyect.spotter.core.useCases.client.getRandomFeed.application.port.in.GetFeedUseCase;
 import com.spotter_proyect.spotter.core.shared.DTO.VideoResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -18,8 +19,8 @@ public class GetFeedController {
     private final GetFeedUseCase useCase;
 
     @GetMapping("/getFeed")
-    public ResponseEntity<List<VideoResponse>> getFeed() {
+    public ResponseEntity<List<VideoResponse>> getFeed(@RequestParam(defaultValue = "5") int limit) {
 
-        return ResponseEntity.ok(useCase.getFeed());
+        return ResponseEntity.ok(useCase.getFeed(limit));
     }
 }
