@@ -1,8 +1,8 @@
 package com.spotter_proyect.spotter.core.useCases.auth.login.application.port.in;
 
-import com.spotter_proyect.spotter.core.useCases.auth.login.infrastructure.DTO.LoginResponse;
-import com.spotter_proyect.spotter.core.useCases.auth.login.infrastructure.DTO.LoginRequest;
+import com.spotter_proyect.spotter.core.useCases.auth.login.infrastructure.DTO.LoginResponseDTO;
+import com.spotter_proyect.spotter.core.useCases.auth.login.infrastructure.DTO.LoginRequestDTO;
 
 public interface LoginUseCase {
-    LoginResponse login(LoginRequest request);
+    LoginResponseDTO login(LoginRequestDTO request);
 }

@@ -8,7 +8,7 @@ import com.spotter_proyect.spotter.core.shared.enums.Roles;
 import com.spotter_proyect.spotter.core.shared.model.Client;
 import com.spotter_proyect.spotter.core.shared.model.Trainer;
 import com.spotter_proyect.spotter.core.shared.model.User;
-import com.spotter_proyect.spotter.core.useCases.auth.login.infrastructure.DTO.LoginResponse;
+import com.spotter_proyect.spotter.core.useCases.auth.login.infrastructure.DTO.LoginResponseDTO;
 import com.spotter_proyect.spotter.core.useCases.auth.register.infrastructure.DTO.RegisterRequestDTO;
 import com.spotter_proyect.spotter.core.shared.DTO.VideoRequest;
 import com.spotter_proyect.spotter.core.shared.DTO.VideoResponse;
@@ -24,8 +24,8 @@ import java.util.stream.Collectors;
 public class Mapper {
 
     //  MAPPER LOGIN METHODS
-    public LoginResponse loginReqToResponse(String token, UserEntity user){
-        return new LoginResponse(
+    public LoginResponseDTO loginReqToResponse(String token, UserEntity user){
+        return new LoginResponseDTO(
                 token,
                 user.getId(),
                 user.getEmail(),
