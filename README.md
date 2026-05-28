@@ -140,7 +140,7 @@ docker build -t spotter-backend .
 docker run -p 8081:8081 \
   -e SPRING_DATASOURCE_URL=jdbc:postgresql://host.docker.internal:5433/spotter_db \
   -e SPRING_DATASOURCE_PASSWORD=TU_PASSWORD \
-  -e SECURITY_JWT_SECRET_KEY=TU_CLAVE_BASE64 \
+  -e JWT_SECRET_KEY=TU_CLAVE_BASE64 \
   spotter-backend
 ```
 
